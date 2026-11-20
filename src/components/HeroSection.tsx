@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const FRAME_COUNT = 24
+const FRAME_COUNT = 22
 const FRAME_PATHS = Array.from({ length: FRAME_COUNT }, (_, i) => {
   const num = String(i + 1).padStart(4, "0")
   return assetUrl(`/images/snap-logo-scroll/snap-logo-glass-scroll_${num}.webp`)
