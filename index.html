@@ -73,7 +73,20 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <!-- Critical image preloads for instant above-the-fold hero rendering -->
+    <link
+      rel="preload"
+      as="image"
+      href="./images/snap-logo-scroll/snap-logo-glass-scroll_0001.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/logo-emblem.png"
+      type="image/png"
+    />
     <!-- figma:head-end -->
   </head>
   <body>

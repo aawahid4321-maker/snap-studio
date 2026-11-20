@@ -478,7 +478,7 @@ export default function LinearReviewsCarousel() {
                       width="48"
                       height="48"
                       className="w-full h-full object-cover object-top rounded-[5px] sm:rounded-[6px] lg:rounded-lg select-none pointer-events-none"
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                     />
                   </div>

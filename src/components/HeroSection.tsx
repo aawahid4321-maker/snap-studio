@@ -98,10 +98,11 @@ export default function HeroSection({
     [],
   )
 
-  // Preload all 24 transparent WebP frames
+  // Progressive Frame Loader: Frame 1 loads immediately with high priority,
+  // while frames 2-24 load smoothly in background during idle time / scroll
   useEffect(() => {
     const images: HTMLImageElement[] = []
-    let loadedCount = 0
+    imagesRef.current = images
 
     const renderCurrent = () => {
       const canvas = canvasRef.current
@@ -125,27 +126,78 @@ export default function HeroSection({
       }
     }
 
-    FRAME_PATHS.forEach((src, idx) => {
-      const img = new Image()
-      images[idx] = img
-      img.onload = () => {
-        loadedCount++
-        if (idx === 0 && lastDrawnFrameRef.current === -1) {
-          renderCurrent()
-        }
-        if (idx === Math.round(currentFrameRef.current)) {
-          renderCurrent()
-        }
-      }
-      img.src = src
-      if (img.complete && img.naturalWidth > 0) {
-        if (idx === 0 && lastDrawnFrameRef.current === -1) {
-          renderCurrent()
-        }
-      }
-    })
+    let bgStarted = false
+    function startBackgroundLoading() {
+      if (bgStarted) return
+      bgStarted = true
 
-    imagesRef.current = images
+      // Load remaining frames progressively in batches of 3
+      let i = 1
+      const loadNextBatch = () => {
+        const batchLimit = Math.min(i + 3, FRAME_COUNT)
+        for (; i < batchLimit; i++) {
+          const idx = i
+          const img = new Image()
+          images[idx] = img
+          img.onload = () => {
+            if (idx === Math.round(currentFrameRef.current)) {
+              renderCurrent()
+            }
+          }
+          img.src = FRAME_PATHS[idx]
+        }
+        if (i < FRAME_COUNT) {
+          if ("requestIdleCallback" in window) {
+            ;(window as any).requestIdleCallback(loadNextBatch, { timeout: 300 })
+          } else {
+            setTimeout(loadNextBatch, 50)
+          }
+        }
+      }
+
+      if ("requestIdleCallback" in window) {
+        ;(window as any).requestIdleCallback(loadNextBatch, { timeout: 400 })
+      } else {
+        setTimeout(loadNextBatch, 100)
+      }
+    }
+
+    // Step 1: Load Frame 0 (first visual frame) immediately with high priority
+    const firstImg = new Image()
+    if ("fetchPriority" in firstImg) {
+      ;(firstImg as any).fetchPriority = "high"
+    }
+    images[0] = firstImg
+    firstImg.onload = () => {
+      if (lastDrawnFrameRef.current === -1) {
+        renderCurrent()
+      }
+      startBackgroundLoading()
+    }
+    firstImg.src = FRAME_PATHS[0]
+    if (firstImg.complete && firstImg.naturalWidth > 0) {
+      if (lastDrawnFrameRef.current === -1) {
+        renderCurrent()
+      }
+      startBackgroundLoading()
+    }
+
+    // If user starts scrolling before idle callback fires, start loading remaining frames immediately
+    const onScrollStart = () => {
+      startBackgroundLoading()
+      window.removeEventListener("scroll", onScrollStart)
+      window.removeEventListener("wheel", onScrollStart)
+      window.removeEventListener("touchmove", onScrollStart)
+    }
+    window.addEventListener("scroll", onScrollStart, { passive: true })
+    window.addEventListener("wheel", onScrollStart, { passive: true })
+    window.addEventListener("touchmove", onScrollStart, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", onScrollStart)
+      window.removeEventListener("wheel", onScrollStart)
+      window.removeEventListener("touchmove", onScrollStart)
+    }
   }, [])
 
   // Scroll-driven Hero animation with GSAP + ScrollTrigger

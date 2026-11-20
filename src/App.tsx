@@ -1201,7 +1201,7 @@ function Portfolio({
                     width="1920"
                     height="1080"
                     className="absolute inset-0 w-full h-full object-cover rounded-[6px] sm:rounded-[7px] md:rounded-[8px] lg:rounded-[10px] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 pointer-events-none select-none"
-                    loading="eager"
+                    loading={idx === 0 ? "eager" : "lazy"}
                     decoding="async"
                     draggable={false}
                   />

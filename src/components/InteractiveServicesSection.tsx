@@ -247,7 +247,8 @@ export default function InteractiveServicesSection({
                       }
                       alt={SERVICES_DATA[activeServiceIndex].title}
                       className="w-full h-full object-cover rounded-[5px] sm:rounded-[8px] border border-white/[0.08] transition-transform duration-700 group-hover:scale-[1.02]"
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </motion.div>
                 </AnimatePresence>
