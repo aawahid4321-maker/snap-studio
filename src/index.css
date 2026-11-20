@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOM4nQ.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeE9KJ5T.ttf) format('truetype');
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --navbar-height: 80px;
+  --card: #f4f4f2;
+  --card-foreground: #0a0a0a;
+  --muted: #f4f4f2;
+  --muted-foreground: #6b6b6b;
+  --border: #e4e4e0;
+  --accent-coral: #f27256;
+  --accent-red: #cf232b;
+  --ring: #cf232b;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-bricolage: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-bricolage,
+button,
+.nav-3d-word-link,
+.nav-3d-word {
+  font-family: var(--font-bricolage), "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@theme inline {
+  --font-sans: "Geist", sans-serif;
+  --font-geist: "Geist", sans-serif;
+  --font-display: "Geist", sans-serif;
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-coral: var(--accent-coral);
+  --color-red: var(--accent-red);
+}
+
+@import 'lenis/dist/lenis.css';
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+/* ============================================================= */
+/* 3D Full Word Flip Navigation Links                            */
+/* ============================================================= */
+.nav-3d-word-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  perspective: 600px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-3d-word-wrap {
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  height: 1.35em;
+  line-height: 1.35em;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.nav-3d-word {
+  display: block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.3s ease;
+  will-change: transform, opacity;
+  white-space: nowrap;
+}
+
+/* Front Face: The full word flips up and away in 3D */
+.nav-3d-word-front {
+  transform-origin: 50% 100%;
+  transform: translateY(0%) rotateX(0deg);
+  opacity: 1;
+}
+
+.nav-3d-word-link:hover .nav-3d-word-front,
+.nav-3d-word-link.is-flipped .nav-3d-word-front {
+  transform: translateY(-100%) rotateX(-90deg);
+  opacity: 0;
+}
+
+/* Back Face: The duplicate full word flips in from below in 3D (clean solid color, no gradient) */
+.nav-3d-word-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform-origin: 50% 0%;
+  transform: translateY(100%) rotateX(90deg);
+  opacity: 0;
+  color: inherit;
+}
+
+.nav-3d-word-link:hover .nav-3d-word-back,
+.nav-3d-word-link.is-flipped .nav-3d-word-back {
+  transform: translateY(0%) rotateX(0deg);
+  opacity: 1;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure GSAP ScrollTrigger pinned spacers never cause horizontal scroll or gaps */
+.pin-spacer {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* Scrollbar styling with WebKit fallbacks */
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+*:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: var(--border) transparent;
+}
+
+.card-image-knko {
+  background-image: url('/work/knko/Slide1.PNG');
+}
+.card-image-featherdev {
+  background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1800&q=80');
+}
+.card-image-boltshift {
+  background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1800&q=80');
+}
+.card-image-spherule {
+  background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1800&q=80');
+}
+.card-image-apex {
+  background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1800&q=80');
+}
+.card-logo-hidden {
+  display: none;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent-coral), var(--accent-red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* infinite marquee — track holds two copies, slides to -50% */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 24s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes pulseDotWhite {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0.5; }
+}
+.animate-pulse-dot {
+  animation: pulseDotWhite 1.2s infinite alternate ease-in-out;
+}
+
+/* ============================================================= */
+/* Latest Projects Stacking Cards (Scoped to .projects-stack)    */
+/* ============================================================= */
+.projects-stack .card-link {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .projects-stack .card-link {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-stack .project-card,
+  .projects-stack .projects-stack-heading {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Scroll-triggered staggered word scale animation on Latest projects heading */
+.projects-heading-scale .projects-word-scale {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.65) translateY(24px);
+  transform-origin: center;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* "Latest" appears first */
+.projects-heading-scale .projects-word-scale.word-1 {
+  transition-delay: 0s;
+}
+
+/* "projects" appears second */
+.projects-heading-scale .projects-word-scale.word-2 {
+  transition-delay: 0.16s;
+}
+
+/* In-view active state */
+.projects-heading-scale.in-view .projects-word-scale {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-heading-scale .projects-word-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Interactive View All Work Button Eye Animations */
+@keyframes eyePeriodicBlink {
+  0%, 88%, 100% {
+    transform: scaleY(1);
+  }
+  92% {
+    transform: scaleY(0.08);
+  }
+  95% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-eye-periodic-blink {
+  animation: eyePeriodicBlink 3.6s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes eyeClickBlink {
+  0% { transform: scaleY(1); }
+  15% { transform: scaleY(0.08); }
+  30% { transform: scaleY(1); }
+  50% { transform: scaleY(0.08); }
+  65% { transform: scaleY(1); }
+  100% { transform: scaleY(1); }
+}
+
+.animate-eye-click-blink {
+  animation: eyeClickBlink 0.75s ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes eyeMoveClick {
+  0% { transform: translate(0, 0) scale(1); }
+  18% { transform: translate(7px, -6px) scale(1.15); }
+  36% { transform: translate(-7px, 5px) scale(0.95); }
+  54% { transform: translate(6px, 7px) scale(1.1); }
+  72% { transform: translate(-5px, -5px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-eye-move {
+  animation: eyeMoveClick 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ============================================================= */
+/* Scoped Services Section Styles (.services-section)            */
+/* ============================================================= */
+.services-section {
+  --coral: #F27256;
+  --red: #CF232B;
+  --black: #0A0A0A;
+  --white: #FFFFFF;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'Geist', var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.services-section h2,
+.services-section h3,
+.services-section .service-row-title,
+.services-section p {
+  font-family: 'Geist', var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.services-section .font-mono,
+.services-section .service-row-number,
+.services-section .service-row-tags {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+}
+
+.services-section .text-gradient {
+  background: linear-gradient(90deg, var(--coral), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.services-section .service-row {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.services-section .service-row-title {
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.services-section .service-row:hover .service-row-title {
+  transform: translateX(8px);
+}
+
+.services-section .service-row-number {
+  transition: color 0.3s ease;
+}
+
+.services-section .service-row:hover .service-row-number {
+  color: var(--coral);
+}
+
+.services-section .service-row-tags {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.services-section .service-row:hover .service-row-tags {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.services-section .service-row-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.services-section .service-row:hover .service-row-line {
+  transform: scaleX(1);
+}
+
+/* ============================================================= */
+/* Footer Connect text hover wave animation                      */
+/* ============================================================= */
+@media (hover: hover) and (pointer: fine) {
+  .connect-char-hoverable {
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .connect-char-hoverable:hover {
+    transform: translateY(-0.065em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connect-char-hoverable,
+  .connect-char-hoverable:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+

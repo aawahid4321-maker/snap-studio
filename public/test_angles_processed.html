@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background: linear-gradient(135deg, #EB6E52 0%, #E66A4E 50%, #CC453B 75%, #B3232A 100%);
+      margin: 0; padding: 30px; color: white; font-family: sans-serif;
+    }
+    .grid { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+    .box {
+      position: relative; background: rgba(0,0,0,0.15); border-radius: 12px;
+      height: 380px; width: 340px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 20px;
+    }
+    .shadow-ellipse {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      width: 260px; height: 32px;
+      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(20, 5, 5, 0.28) 0%, rgba(30, 8, 8, 0.12) 45%, rgba(0, 0, 0, 0) 75%);
+      filter: blur(20px);
+    }
+    img { height: 320px; width: auto; position: relative; z-index: 1; }
+    h3 { position: absolute; top: 12px; left: 16px; margin: 0; font-size: 14px; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <h2>Processed Angles Preview (Clean Transparency + No Baked Shadows)</h2>
+  <div class="grid">
+    <div class="box">
+      <h3>1. test_0019 (Side angle)</h3>
+      <div class="shadow-ellipse"></div>
+      <img src="/images/hero/angles/test_0019.png" />
+    </div>
+    <div class="box">
+      <h3>2. test_0037 (Rear angle)</h3>
+      <div class="shadow-ellipse"></div>
+      <img src="/images/hero/angles/test_0037.png" />
+    </div>
+    <div class="box">
+      <h3>3. test_0055 (Other side angle)</h3>
+      <div class="shadow-ellipse"></div>
+      <img src="/images/hero/angles/test_0055.png" />
+    </div>
+    <div class="box">
+      <h3>4. test_0001 (Final resting angle)</h3>
+      <div class="shadow-ellipse"></div>
+      <img src="/images/hero/angles/test_0001.png" />
+    </div>
+  </div>
+</body>
+</html>

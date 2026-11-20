@@ -1,0 +1,10 @@
+{
+  "description": "Create stunning websites for agencies with customizable hero sections and engaging scroll animations, enhancing user experience and visual appeal.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
