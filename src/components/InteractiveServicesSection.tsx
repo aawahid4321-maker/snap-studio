@@ -180,7 +180,7 @@ export default function InteractiveServicesSection({
       <div className="mx-auto max-w-[1720px] px-4 sm:px-6 md:px-8 xl:px-10 w-full">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-14 items-start justify-between w-full">
           {/* LEFT COLUMN: Sticky on desktop (1024px+) with clean navbar clearance */}
-          <div className="w-full lg:w-[44%] xl:w-[43%] max-w-[760px] lg:sticky lg:top-[55px] self-start shrink-0">
+          <div className="w-full lg:w-[44%] xl:w-[43%] max-w-[760px] lg:sticky lg:top-[75px] self-start shrink-0">
             {/* Header Text Block: moved upper as requested */}
             <div className="-mt-6 sm:-mt-10 lg:-mt-16">
               {/* 1. Label Row */}
