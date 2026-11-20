@@ -82,7 +82,7 @@ export default function HeroSection({
         return
       }
 
-      const img = imagesRef.current[frameIndex]
+      const img = imagesRef.current[frameIndex] || imagesRef.current[0]
       if (img && img.complete && img.naturalWidth > 0) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -98,7 +98,7 @@ export default function HeroSection({
     [],
   )
 
-  // Preload all 24 transparent PNG frames
+  // Preload all 24 transparent WebP frames
   useEffect(() => {
     const images: HTMLImageElement[] = []
     let loadedCount = 0
@@ -127,7 +127,7 @@ export default function HeroSection({
 
     FRAME_PATHS.forEach((src, idx) => {
       const img = new Image()
-      img.src = src
+      images[idx] = img
       img.onload = () => {
         loadedCount++
         if (idx === 0 && lastDrawnFrameRef.current === -1) {
@@ -137,10 +137,12 @@ export default function HeroSection({
           renderCurrent()
         }
       }
-      if (img.complete && idx === 0 && lastDrawnFrameRef.current === -1) {
-        renderCurrent()
+      img.src = src
+      if (img.complete && img.naturalWidth > 0) {
+        if (idx === 0 && lastDrawnFrameRef.current === -1) {
+          renderCurrent()
+        }
       }
-      images.push(img)
     })
 
     imagesRef.current = images
@@ -566,25 +568,11 @@ export default function HeroSection({
         }}
       >
         <div ref={glassLogoParallaxRef} className="relative flex items-center md:items-end justify-center">
-          {/* Instant fallback image: ensures glass logo is visible immediately from millisecond 0 */}
-          <img
-            src={FRAME_PATHS[0]}
-            alt=""
-            aria-hidden="true"
-            width={1920}
-            height={1080}
-            className="absolute inset-0 h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none"
-            style={{
-              aspectRatio: "1920 / 1080",
-            }}
-            loading="eager"
-            decoding="async"
-          />
           <canvas
             ref={canvasRef}
             width={1920}
             height={1080}
-            className="relative h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none will-change-transform"
+            className="h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none will-change-transform"
             style={{
               aspectRatio: "1920 / 1080",
             }}
