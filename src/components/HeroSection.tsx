@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import FlickingProjectStack from "@/components/FlickingProjectStack"
+import { assetUrl } from "@/utils/asset"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -10,7 +11,7 @@ if (typeof window !== "undefined") {
 const FRAME_COUNT = 22
 const FRAME_PATHS = Array.from({ length: FRAME_COUNT }, (_, i) => {
   const num = String(i + 1).padStart(4, "0")
-  return `/images/snap-logo-scroll/snap-logo-glass-scroll_${num}.png`
+  return assetUrl(`/images/snap-logo-scroll/snap-logo-glass-scroll_${num}.png`)
 })
 
 interface HeroSectionProps {

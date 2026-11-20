@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react"
+import { assetUrl } from "@/utils/asset"
 
 export interface ReviewItem {
   id: string
@@ -24,7 +25,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "Ankur has been extremely helpful, with the mentoring I have gotten from him, as well as the work he has completed for me with plugin development.",
     rating: 5,
-    avatar: "/avatars/avatar2.jpg",
+    avatar: assetUrl("/avatars/avatar2.jpg"),
     avatarBg: "bg-[#FFE8DC]",
     companyBadge: {
       name: "PROPERTYBRAIN.",
@@ -51,7 +52,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "The deck they built helped us close our $2.4M seed round in three weeks. Investors specifically praised how clear and institutional our presentation was.",
     rating: 5,
-    avatar: "/avatars/avatar3.jpg",
+    avatar: assetUrl("/avatars/avatar3.jpg"),
     avatarBg: "bg-[#EAE8FE]",
     companyBadge: {
       name: "NORTHBEAM.",
@@ -78,7 +79,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "Snap Studio completely rebranded our identity in under two weeks. Every single touchpoint finally feels cohesive, intentional, and high-tier.",
     rating: 5,
-    avatar: "/avatars/avatar4.jpg",
+    avatar: assetUrl("/avatars/avatar4.jpg"),
     avatarBg: "bg-[#E6F4EA]",
     companyBadge: {
       name: "LUMEN & CO.",
@@ -106,7 +107,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "Ankur answered our technical challenges in a concise, authoritative way. He was courteous, prompt, and exceptionally easy to collaborate with.",
     rating: 5,
-    avatar: "/avatars/avatar1.jpg",
+    avatar: assetUrl("/avatars/avatar1.jpg"),
     avatarBg: "bg-[#FEF0D6]",
     companyBadge: {
       name: "GASM",
@@ -134,7 +135,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "Their automation workflows quietly save us over ten hours a week. Set up once, flawlessly integrated with our CRM, and runs forever without hiccups.",
     rating: 5,
-    avatar: "/avatars/avatar3.jpg",
+    avatar: assetUrl("/avatars/avatar3.jpg"),
     avatarBg: "bg-[#FCE7F3]",
     companyBadge: {
       name: "VERVE.",
@@ -161,7 +162,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     quote:
       "Unbelievable attention to detail and execution speed. They delivered a fully responsive, pixel-perfect web application ahead of schedule.",
     rating: 5,
-    avatar: "/avatars/avatar2.jpg",
+    avatar: assetUrl("/avatars/avatar2.jpg"),
     avatarBg: "bg-[#E0F2FE]",
     companyBadge: {
       name: "SYNDICATE.",

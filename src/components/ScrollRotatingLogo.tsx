@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react"
+import { assetUrl } from "@/utils/asset"
 
 /**
  * ScrollRotatingLogo — Pure canvas renderer for the 3D logo frame sequence.
@@ -18,7 +19,7 @@ const FRAME_FILENAMES = [
 ]
 
 export const FRAME_COUNT = FRAME_FILENAMES.length
-const FRAME_BASE_PATH = "/images/hero/rotation-frames/"
+const FRAME_BASE_PATH = assetUrl("/images/hero/rotation-frames/")
 
 // Native frame dimensions
 const FRAME_WIDTH = 960

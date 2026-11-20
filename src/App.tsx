@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, lazy, Suspense } from "react"
+import { assetUrl } from "@/utils/asset"
 import Lenis from "lenis"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -607,7 +608,7 @@ const LATEST_PROJECTS_LIST = [
     id: "knko",
     name: "KNKO Architectural Bureau",
     category: "Architecture & Strategic Plan",
-    img: "/work/knko/Slide1.PNG",
+    img: assetUrl("/work/knko/Slide1.PNG"),
     hideLogo: true,
     icon: null,
   },
@@ -615,7 +616,7 @@ const LATEST_PROJECTS_LIST = [
     id: "driveberry",
     name: "DriveBerry",
     category: "Mobile App & Product Design",
-    img: "/work/driveberry/Slide1.PNG",
+    img: assetUrl("/work/driveberry/Slide1.PNG"),
     hideLogo: true,
     icon: null,
   },
@@ -623,7 +624,7 @@ const LATEST_PROJECTS_LIST = [
     id: "euphorixz",
     name: "Euphorixz",
     category: "Science-Backed Supplements",
-    img: "/work/euphorixz/Slide1.PNG",
+    img: assetUrl("/work/euphorixz/Slide1.PNG"),
     hideLogo: true,
     icon: null,
   },
@@ -631,7 +632,7 @@ const LATEST_PROJECTS_LIST = [
     id: "bluemore",
     name: "Blue More Yachting",
     category: "Luxury Yacht Charter & Hospitality",
-    img: "/work/bluemore/Slide1.PNG",
+    img: assetUrl("/work/bluemore/Slide1.PNG"),
     hideLogo: true,
     icon: null,
   },
@@ -639,7 +640,7 @@ const LATEST_PROJECTS_LIST = [
     id: "nodaliq",
     name: "NODALiQ",
     category: "Logo Design & Brand Identity",
-    img: "/work/nodaliq/nodaliq-14.webp",
+    img: assetUrl("/work/nodaliq/nodaliq-14.webp"),
     hideLogo: true,
     icon: null,
   },
@@ -647,7 +648,7 @@ const LATEST_PROJECTS_LIST = [
     id: "axorix",
     name: "Axorix",
     category: "Logo Design & Brand Identity",
-    img: "/work/axorix/imageye___-_imgi_15_f95a7.webp",
+    img: assetUrl("/work/axorix/imageye___-_imgi_15_f95a7.webp"),
     hideLogo: true,
     icon: null,
   },
@@ -655,7 +656,7 @@ const LATEST_PROJECTS_LIST = [
     id: "aivon",
     name: "Aivon",
     category: "Social Media Design & Content",
-    img: "/work/aivon/thumbnail.png",
+    img: assetUrl("/work/aivon/thumbnail.png"),
     hideLogo: true,
     icon: null,
   },

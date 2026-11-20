@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
+import { assetUrl } from "@/utils/asset"
 
 import topRef1 from "@/imports/top-ref-1.jpg"
 import topRef2 from "@/imports/top-ref-2.jpg"
@@ -225,7 +226,7 @@ export default function FlickingProjectStack({
   useEffect(() => {
     FLICKING_PROJECTS.forEach((proj) => {
       const img = new Image()
-      img.src = proj.image
+      img.src = assetUrl(proj.image)
     })
   }, [])
 
@@ -403,7 +404,7 @@ export default function FlickingProjectStack({
               style={cardStyle}
             >
               <img
-                src={card.item.image}
+                src={assetUrl(card.item.image)}
                 alt={card.item.name}
                 className="w-full h-full object-cover pointer-events-none"
                 loading="eager"

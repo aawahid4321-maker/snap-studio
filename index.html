@@ -1,6 +1,57 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function() {
+        var isGh = window.location.hostname.endsWith("github.io") || window.location.pathname.startsWith("/snap-studio");
+        var base = isGh ? "/snap-studio" : "";
+
+        function fixUrl(url) {
+          if (!url || typeof url !== "string") return url;
+          if (!base) return url;
+          if (url.startsWith("/work/") || url.startsWith("/images/") || url.startsWith("/avatars/") || url.startsWith("/social-media/")) {
+            return base + url;
+          }
+          return url;
+        }
+
+        window.__SNAP_FIX_URL__ = fixUrl;
+
+        var imgProto = HTMLImageElement.prototype;
+        var srcDesc = Object.getOwnPropertyDescriptor(imgProto, "src");
+        if (srcDesc && srcDesc.set) {
+          var origSet = srcDesc.set;
+          Object.defineProperty(imgProto, "src", {
+            set: function(val) {
+              origSet.call(this, fixUrl(val));
+            },
+            get: srcDesc.get,
+            configurable: true,
+            enumerable: true
+          });
+        }
+
+        var origSetAttr = Element.prototype.setAttribute;
+        Element.prototype.setAttribute = function(name, val) {
+          if (name === "src" || name === "href") {
+            return origSetAttr.call(this, name, fixUrl(val));
+          }
+          return origSetAttr.call(this, name, val);
+        };
+
+        if (window.fetch) {
+          var origFetch = window.fetch;
+          window.fetch = function(input, init) {
+            if (typeof input === "string") {
+              input = fixUrl(input);
+            } else if (input && typeof input.url === "string") {
+              input = new Request(fixUrl(input.url), input);
+            }
+            return origFetch.call(this, input, init);
+          };
+        }
+      })();
+    </script>
     <!-- figma:head-start -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

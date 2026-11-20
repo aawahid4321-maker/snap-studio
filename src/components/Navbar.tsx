@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { assetUrl } from "@/utils/asset"
 
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -115,7 +116,7 @@ export default function Navbar({
           aria-label="Snap Studio Homepage"
         >
           <img
-            src="/images/logo-emblem.png"
+            src={assetUrl("/images/logo-emblem.png")}
             alt="Snap Studio"
             className="object-contain transition-all duration-[360ms] ease-[cubic-bezier(0.16,1,0.3,1)] shrink-0 w-[26px] h-[26px] sm:w-[32px] sm:h-[32px] md:w-[34px] md:h-[34px] lg:w-[36px] lg:h-[36px]"
           />
