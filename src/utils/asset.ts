@@ -2,6 +2,13 @@
  * Resolves static assets cleanly across local dev, Figma Make, and GitHub Pages.
  */
 export function getAssetBase(): string {
+  // 1. If Vite injected BASE_URL at build time (e.g. "/snap-studio/"), use it
+  const viteBase = typeof import.meta !== "undefined" ? import.meta.env?.BASE_URL : undefined
+  if (viteBase && viteBase !== "/" && viteBase !== "./") {
+    return viteBase.replace(/\/$/, "")
+  }
+
+  // 2. Runtime fallback for GitHub Pages
   if (typeof window !== "undefined") {
     if (
       window.location.hostname.endsWith("github.io") ||

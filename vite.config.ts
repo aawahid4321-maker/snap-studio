@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: process.env.FIGMA_PUBLIC_URL
       ? `${process.env.FIGMA_PUBLIC_URL}/`
-      : process.env.GITHUB_ACTIONS === "true"
+      : (process.env.GITHUB_ACTIONS === "true" || mode === "production")
         ? "/snap-studio/"
         : "./",
     build: {

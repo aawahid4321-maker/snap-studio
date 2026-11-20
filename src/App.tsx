@@ -1196,7 +1196,7 @@ function Portfolio({
                 >
                   {/* Background Image - Vibrant, Not Faded */}
                   <img
-                    src={proj.img}
+                    src={assetUrl(proj.img)}
                     alt={proj.name}
                     width="1920"
                     height="1080"

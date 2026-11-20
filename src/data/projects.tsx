@@ -1,5 +1,6 @@
 import React from "react"
 import { Project } from "@/types/project"
+import { assetUrl } from "@/utils/asset"
 
 import topRef1 from "@/imports/top-ref-1.jpg"
 import topRef2 from "@/imports/top-ref-2.jpg"
@@ -76,11 +77,11 @@ export const SERVICES_CATEGORIES: ServiceCategory[] = [
     slug: "ai-automation",
     tags: "LEADS / REPORTING / SCHEDULING",
     desc: "Custom workflows that handle lead follow-ups, reporting, and scheduling — so your team can focus on growth.",
-    image: "/work/workai/Slide1.png",
+    image: assetUrl("/work/workai/Slide1.png"),
   },
 ]
 
-export const PROJECTS: Project[] = [
+const RAW_PROJECTS: Project[] = [
   {
     id: "knko",
     slug: "knko-architectural-bureau",
@@ -2281,6 +2282,25 @@ export const PROJECTS: Project[] = [
     ],
   },
 ]
+
+function normalizeProjectAssets(project: Project): Project {
+  return {
+    ...project,
+    coverImage: project.coverImage ? assetUrl(project.coverImage) : project.coverImage,
+    media: project.media?.map((m) => ({
+      ...m,
+      src: assetUrl(m.src),
+      compareBefore: m.compareBefore ? assetUrl(m.compareBefore) : undefined,
+      compareAfter: m.compareAfter ? assetUrl(m.compareAfter) : undefined,
+    })),
+    artifacts: project.artifacts?.map((a) => ({
+      ...a,
+      src: assetUrl(a.src),
+    })),
+  }
+}
+
+export const PROJECTS: Project[] = RAW_PROJECTS.map(normalizeProjectAssets)
 
 // Helper functions for easy querying
 export function getProjectBySlug(slug: string): Project | undefined {

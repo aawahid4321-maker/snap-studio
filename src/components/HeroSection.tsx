@@ -8,10 +8,10 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const FRAME_COUNT = 22
+const FRAME_COUNT = 24
 const FRAME_PATHS = Array.from({ length: FRAME_COUNT }, (_, i) => {
   const num = String(i + 1).padStart(4, "0")
-  return assetUrl(`/images/snap-logo-scroll/snap-logo-glass-scroll_${num}.png`)
+  return assetUrl(`/images/snap-logo-scroll/snap-logo-glass-scroll_${num}.webp`)
 })
 
 interface HeroSectionProps {
@@ -31,8 +31,10 @@ export default function HeroSection({
   const wordmarkContainerRef = useRef<HTMLDivElement>(null)
   const wordmarkRef = useRef<HTMLHeadingElement>(null)
   const glassLogoRef = useRef<HTMLDivElement>(null)
+  const glassLogoParallaxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const blurMaskRef = useRef<HTMLDivElement>(null)
+  const blurMaskParallaxRef = useRef<HTMLDivElement>(null)
   const blurMaskInnerRef = useRef<HTMLDivElement>(null)
   const contentCardRef = useRef<HTMLDivElement>(null)
   const projectCardWrapperRef = useRef<HTMLDivElement>(null)
@@ -401,13 +403,14 @@ export default function HeroSection({
         )
       }
 
-      // Desktop subtle mouse parallax on the 3D glass logo and blur mask
-      if (window.innerWidth >= 768 && logoTargets.length > 0) {
-        const quickX = gsap.quickTo(logoTargets, "x", {
+      // Desktop subtle mouse parallax on the 3D glass logo and blur mask (applied strictly to inner wrappers)
+      const parallaxTargets = [glassLogoParallaxRef.current, blurMaskParallaxRef.current].filter(Boolean)
+      if (window.innerWidth >= 768 && parallaxTargets.length > 0) {
+        const quickX = gsap.quickTo(parallaxTargets, "x", {
           duration: 0.8,
           ease: "power2.out",
         })
-        const quickY = gsap.quickTo(logoTargets, "y", {
+        const quickY = gsap.quickTo(parallaxTargets, "y", {
           duration: 0.8,
           ease: "power2.out",
         })
@@ -531,7 +534,7 @@ export default function HeroSection({
           zIndex: 12,
         }}
       >
-        <div className="relative flex items-end justify-center">
+        <div ref={blurMaskParallaxRef} className="relative flex items-end justify-center">
           <div
             ref={blurMaskInnerRef}
             className="h-[63vh] sm:h-[77vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none select-none pointer-events-none will-change-transform"
@@ -562,12 +565,26 @@ export default function HeroSection({
           width: "auto",
         }}
       >
-        <div className="relative flex items-center md:items-end justify-center">
+        <div ref={glassLogoParallaxRef} className="relative flex items-center md:items-end justify-center">
+          {/* Instant fallback image: ensures glass logo is visible immediately from millisecond 0 */}
+          <img
+            src={FRAME_PATHS[0]}
+            alt=""
+            aria-hidden="true"
+            width={1920}
+            height={1080}
+            className="absolute inset-0 h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none"
+            style={{
+              aspectRatio: "1920 / 1080",
+            }}
+            loading="eager"
+            decoding="async"
+          />
           <canvas
             ref={canvasRef}
             width={1920}
             height={1080}
-            className="h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none will-change-transform"
+            className="relative h-[34vh] sm:h-[44vh] md:h-[88vh] lg:h-[91vh] xl:h-[93vh] w-auto max-w-none object-contain select-none pointer-events-none will-change-transform"
             style={{
               aspectRatio: "1920 / 1080",
             }}

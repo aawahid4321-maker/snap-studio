@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { assetUrl } from "@/utils/asset"
 import topRef1 from "@/imports/top-ref-1.jpg"
 import topRef2 from "@/imports/top-ref-2.jpg"
 import topRef3 from "@/imports/top-ref-3.jpg"
@@ -33,12 +34,12 @@ const SERVICES_DATA: ServiceItem[] = [
     tags: "INVESTOR DECKS / STORYTELLING",
     desc: "Investor decks built around a story that holds attention.",
     covers: [
-      "/work/knko/Slide1.PNG",
-      "/work/bluemore/Slide1.PNG",
-      "/work/driveberry/Slide1.PNG",
-      "/work/euphorixz/Slide1.PNG",
-      "/work/roland-donald/Slide1.PNG",
-      "/work/lgm-aviation/Slide1.PNG",
+      assetUrl("/work/knko/Slide1.PNG"),
+      assetUrl("/work/bluemore/Slide1.PNG"),
+      assetUrl("/work/driveberry/Slide1.PNG"),
+      assetUrl("/work/euphorixz/Slide1.PNG"),
+      assetUrl("/work/roland-donald/Slide1.PNG"),
+      assetUrl("/work/lgm-aviation/Slide1.PNG"),
     ],
   },
   {
@@ -48,13 +49,13 @@ const SERVICES_DATA: ServiceItem[] = [
     tags: "IDENTITY / GUIDELINES",
     desc: "Identities people recognize and remember.",
     covers: [
-      "/work/nodaliq/nodaliq-11-business-cards.webp",
-      "/work/nodaliq/nodaliq-14.webp",
-      "/work/axorix/imageye___-_imgi_15_f95a7.webp",
-      "/work/flex/1.png",
-      "/work/pypo/Slide1.PNG",
-      "/work/atma/Cover.png",
-      "/work/aura/Slide1.png",
+      assetUrl("/work/nodaliq/nodaliq-11-business-cards.webp"),
+      assetUrl("/work/nodaliq/nodaliq-14.webp"),
+      assetUrl("/work/axorix/imageye___-_imgi_15_f95a7.webp"),
+      assetUrl("/work/flex/1.png"),
+      assetUrl("/work/pypo/Slide1.PNG"),
+      assetUrl("/work/atma/Cover.png"),
+      assetUrl("/work/aura/Slide1.png"),
     ],
   },
   {
@@ -79,9 +80,9 @@ const SERVICES_DATA: ServiceItem[] = [
     tags: "PRODUCT / INTERFACES",
     desc: "Interfaces that feel effortless to use.",
     covers: [
-      "/work/mindspace/thumbnail.png",
-      "/work/livearena/thumbnail.png",
-      "/work/nexa/thumbnail.png",
+      assetUrl("/work/mindspace/thumbnail.png"),
+      assetUrl("/work/livearena/thumbnail.png"),
+      assetUrl("/work/nexa/thumbnail.png"),
     ],
   },
   {
@@ -98,7 +99,7 @@ const SERVICES_DATA: ServiceItem[] = [
     slug: "ai-automation",
     tags: "LEADS / REPORTING / SCHEDULING",
     desc: "Custom workflows that handle lead follow-ups, reporting, and scheduling — so your team can focus on growth.",
-    covers: ["/work/workai/Slide1.png"],
+    covers: [assetUrl("/work/workai/Slide1.png")],
   },
 ]
 

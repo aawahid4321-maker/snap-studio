@@ -30,37 +30,37 @@ export const FLICKING_PROJECTS: ProjectStackItem[] = [
     id: "bluemore",
     slug: "bluemore",
     name: "Blue More Yachting",
-    image: "/work/bluemore/Slide1.PNG",
+    image: assetUrl("/work/bluemore/Slide1.PNG"),
   },
   {
     id: "driveberry",
     slug: "driveberry",
     name: "DriveBerry Mobile App",
-    image: "/work/driveberry/Slide1.PNG",
+    image: assetUrl("/work/driveberry/Slide1.PNG"),
   },
   {
     id: "knko",
     slug: "knko",
     name: "KNKO Architectural Bureau",
-    image: "/work/knko/Slide1.PNG",
+    image: assetUrl("/work/knko/Slide1.PNG"),
   },
   {
     id: "euphorixz",
     slug: "euphorixz",
     name: "Euphorixz Supplements",
-    image: "/work/euphorixz/Slide1.PNG",
+    image: assetUrl("/work/euphorixz/Slide1.PNG"),
   },
   {
     id: "roland-donald",
     slug: "roland-donald",
     name: "Roland Donald Heavy Machinery",
-    image: "/work/roland-donald/Slide1.PNG",
+    image: assetUrl("/work/roland-donald/Slide1.PNG"),
   },
   {
     id: "lgm-aviation",
     slug: "lgm-aviation",
     name: "LGM Aviation Worldwide",
-    image: "/work/lgm-aviation/Slide1.PNG",
+    image: assetUrl("/work/lgm-aviation/Slide1.PNG"),
   },
 
   // 02. Logo & Branding
@@ -68,37 +68,37 @@ export const FLICKING_PROJECTS: ProjectStackItem[] = [
     id: "nodaliq",
     slug: "nodaliq",
     name: "NODALiQ Brand Identity",
-    image: "/work/nodaliq/nodaliq-11-business-cards.webp",
+    image: assetUrl("/work/nodaliq/nodaliq-11-business-cards.webp"),
   },
   {
     id: "axorix",
     slug: "axorix",
     name: "Axorix Brand Identity",
-    image: "/work/axorix/imageye___-_imgi_15_f95a7.webp",
+    image: assetUrl("/work/axorix/imageye___-_imgi_15_f95a7.webp"),
   },
   {
     id: "flex",
     slug: "flex",
     name: "Flex Athletic Performance",
-    image: "/work/flex/1.png",
+    image: assetUrl("/work/flex/1.png"),
   },
   {
     id: "pypo",
     slug: "pypo",
     name: "Pypo Creative Studio",
-    image: "/work/pypo/Slide1.PNG",
+    image: assetUrl("/work/pypo/Slide1.PNG"),
   },
   {
     id: "aura",
     slug: "aura",
     name: "Aura Brand Guidelines",
-    image: "/work/aura/Slide1.png",
+    image: assetUrl("/work/aura/Slide1.png"),
   },
   {
     id: "atma",
     slug: "atma",
     name: "ATMA Architectural Furniture",
-    image: "/work/atma/Business Card.png",
+    image: assetUrl("/work/atma/Business Card.png"),
   },
 
   // 03. Social Media Design
@@ -144,19 +144,19 @@ export const FLICKING_PROJECTS: ProjectStackItem[] = [
     id: "mindspace",
     slug: "mindspace",
     name: "Mindspace AI Emotional Wellbeing",
-    image: "/work/mindspace/thumbnail.png",
+    image: assetUrl("/work/mindspace/thumbnail.png"),
   },
   {
     id: "livearena",
     slug: "livearena",
     name: "LiveArena Match Hub",
-    image: "/work/livearena/thumbnail.png",
+    image: assetUrl("/work/livearena/thumbnail.png"),
   },
   {
     id: "nexa",
     slug: "nexa",
     name: "Nexa Crypto Trading",
-    image: "/work/nexa/thumbnail.png",
+    image: assetUrl("/work/nexa/thumbnail.png"),
   },
 
   // 05. Web Development
@@ -178,7 +178,7 @@ export const FLICKING_PROJECTS: ProjectStackItem[] = [
     id: "workai",
     slug: "ai-automation",
     name: "WorkAI Workflow Automation",
-    image: "/work/workai/Slide1.png",
+    image: assetUrl("/work/workai/Slide1.png"),
   },
 ]
 
@@ -362,9 +362,8 @@ export default function FlickingProjectStack({
       <div className="relative w-full h-full">
         {/* Base: solid red card (#E62E2D) rotated 4deg (static) */}
         <div
-          className="absolute inset-0 rounded-[5px] sm:rounded-[6px] md:rounded-[6px] bg-[#E62E2D] pointer-events-none"
+          className="absolute inset-0 rounded-[5px] sm:rounded-[6px] md:rounded-[6px] bg-[#E62E2D] pointer-events-none translate-x-[4px] translate-y-[4px] md:translate-x-[6px] md:translate-y-[6px] rotate-[4deg]"
           style={{
-            transform: "translate(5px, 5px) md:translate(8px, 8px) rotate(4deg)",
             zIndex: 1,
           }}
           aria-hidden="true"
@@ -409,12 +408,6 @@ export default function FlickingProjectStack({
                 className="w-full h-full object-cover pointer-events-none"
                 loading="eager"
                 draggable={false}
-                onError={(e) => {
-                  const target = e.currentTarget
-                  if (target.src !== "/work/bluemore/Slide1.PNG") {
-                    target.src = "/work/bluemore/Slide1.PNG"
-                  }
-                }}
               />
             </div>
           )

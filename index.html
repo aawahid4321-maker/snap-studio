@@ -9,8 +9,19 @@
         function fixUrl(url) {
           if (!url || typeof url !== "string") return url;
           if (!base) return url;
-          if (url.startsWith("/work/") || url.startsWith("/images/") || url.startsWith("/avatars/") || url.startsWith("/social-media/")) {
-            return base + url;
+          var prefixes = ["/work/", "/images/", "/avatars/", "/social-media/"];
+          for (var i = 0; i < prefixes.length; i++) {
+            var p = prefixes[i];
+            if (url.startsWith(p)) {
+              return base + url;
+            }
+            if (url.startsWith(p.slice(1))) {
+              return base + "/" + url;
+            }
+            var originPref = window.location.origin + p;
+            if (url.startsWith(originPref)) {
+              return window.location.origin + base + p + url.slice(originPref.length);
+            }
           }
           return url;
         }
